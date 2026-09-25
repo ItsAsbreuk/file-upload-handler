@@ -1,7 +1,7 @@
 {
   "name": "itsa-fileuploadhandler",
-  "version": "1.0.3",
-  "description": "Handles fileuploads and streams the progress to the client",
+  "version": "2.0.0",
+  "description": "Handles fileuploads for hapi 17 and later (hapi 21) and streams the progress to the client",
   "author": [
     {
       "name": "Marco Asbreuk",
@@ -26,7 +26,7 @@
   ],
   "main": "index.js",
   "engines": {
-    "node": "*"
+    "node": ">=14"
   },
   "dependencies": {
     "fs-extra": "^0.26.7",
@@ -36,16 +36,19 @@
     "itsa-writestream-promise": "0.0.3",
     "multiparty": "^4.1.2"
   },
+  "peerDependencies": {
+    "@hapi/hapi": ">=17"
+  },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "istanbul": "^0.4.3",
-    "eslint": "^2.7.0",
-    "mocha": "^2.4.5"
+    "@hapi/hapi": "^21.4.10",
+    "chai": "^4.5.0",
+    "eslint": "^4.19.1",
+    "mocha": "^10.8.2"
   },
   "scripts": {
-    "pretest": "eslint  ./lib/*.js",
-    "test": "mocha tests/*.js  && istanbul cover $(which _mocha) -- tests/*.js",
-    "lint": "eslint ./lib/*.js"
+    "pretest": "eslint ./lib/*.js ./tests/*.js",
+    "test": "mocha --timeout 10000 tests/*.js",
+    "lint": "eslint ./lib/*.js ./tests/*.js"
   },
   "homepage": "http://itsa.github.io",
   "maintainers": [
